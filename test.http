@@ -1,0 +1,5 @@
+### GET BOOKS
+GET http://localhost:5000/books HTTP/1.1
+
+### GET SINGLE BOOK
+GET http://localhost:5000/books/3 HTTP/1.1
