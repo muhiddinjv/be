@@ -1,4 +1,5 @@
-const bookdata = require("../bookdata");
+let bookdata = require("../bookdata");
+const { v4: uuidv4 } = require("uuid");
 
 const getBooks = (req, reply) => {
   reply.send(bookdata);
@@ -12,4 +13,17 @@ const getBook = (req, reply) => {
   reply.send(book);
 };
 
-module.exports = { getBooks, getBook };
+const addBook = (req, reply) => {
+  //29:46
+  const { title, author, published } = req.body;
+  const book = {
+    id: uuidv4(),
+    title,
+    author,
+    published,
+  };
+  bookdata = [...bookdata, book];
+  reply.code(201).send(book);
+};
+
+module.exports = { getBooks, getBook, addBook };

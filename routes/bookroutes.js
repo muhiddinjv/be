@@ -1,10 +1,10 @@
-const { getBook, getBooks } = require("../controllers/bookController");
+const { getBook, getBooks, addBook } = require("../controllers/bookController");
 
 // options for get all books
-const Item = {
+const Book = {
   type: "object",
   properties: {
-    id: { type: "integer" },
+    id: { type: "string" },
     title: { type: "string" },
     author: { type: "string" },
     published: { type: "string" },
@@ -16,7 +16,7 @@ const getBooksOpts = {
     response: {
       200: {
         type: "array",
-        items: Item,
+        items: Book,
       },
     },
   },
@@ -26,18 +26,30 @@ const getBooksOpts = {
 const getBookOpts = {
   schema: {
     response: {
-      200: Item,
+      200: Book,
     },
   },
   handler: getBook,
 };
 
+const postBookOpts = {
+  schema: {
+    response: {
+      201: Book,
+    },
+  },
+  handler: addBook,
+};
+
 function bookRoutes(fastify, options, done) {
-  // Get all books
+  // GET all books
   fastify.get("/books", getBooksOpts);
 
-  // Get single book
+  // GET single book
   fastify.get("/books/:id", getBookOpts);
+
+  // POST single book
+  fastify.post("/books", postBookOpts);
 
   done();
 }

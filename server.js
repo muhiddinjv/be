@@ -1,13 +1,15 @@
-const fastify = require("fastify")({ logger: true });
-
-fastify.register(require("./routes/bookroutes"));
+const fastify = require("fastify")();
+// const swaggerObj = require("./helper/swagger");
 fastify.register(require("@fastify/swagger"), {
-  exposeRoute: true,
   routePrefix: "/docs",
+  exposeRoute: true,
   swagger: {
-    info: { title: "fastify-api" },
+    info: {
+      title: "Okeni swaggeri bu uka!",
+    },
   },
 });
+fastify.register(require("./routes/bookroutes"));
 
 const start = async () => {
   const PORT = 5000;
