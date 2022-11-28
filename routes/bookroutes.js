@@ -41,6 +41,15 @@ const postBookOpts = {
   handler: addBook,
 };
 
+const updateBookOpts = {
+  schema: {
+    response: {
+      200: Book,
+    },
+  },
+  handler: getBook,
+};
+
 function bookRoutes(fastify, options, done) {
   // GET all books
   fastify.get("/books", getBooksOpts);
@@ -50,6 +59,9 @@ function bookRoutes(fastify, options, done) {
 
   // POST single book
   fastify.post("/books", postBookOpts);
+
+  // UPDATE single book
+  fastify.put("/books/:id", updateBookOpts);
 
   done();
 }

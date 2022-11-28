@@ -13,3 +13,13 @@ Content-Type: application/json
     "author": "Tony Robbins",
     "published": "12/30/2016"
 }
+
+### UPDATE SINGLE BOOK
+PUT http://localhost:5000/books/1 HTTP/1.1
+Content-Type: application/json
+
+{
+    "title": "Awaken the Giant Within",
+    "author": "Tony Robbins",
+    "published": "12/30/2016"
+}

@@ -26,4 +26,13 @@ const addBook = (req, reply) => {
   reply.code(201).send(book);
 };
 
-module.exports = { getBooks, getBook, addBook };
+const updateBook = (req, reply) => {
+  const { id } = req.params;
+  const { title, author, published } = req.body;
+
+  const book = bookdata.find((book) => book.id === id);
+
+  reply.send(book);
+};
+
+module.exports = { getBooks, getBook, addBook, updateBook };
