@@ -30,9 +30,18 @@ const updateBook = (req, reply) => {
   const { id } = req.params;
   const { title, author, published } = req.body;
 
-  const book = bookdata.find((book) => book.id === id);
+  bookdata = bookdata.map((book) => (book.id === id ? {id, title, author, published} : book));
+  book = bookdata.find(book => book.id === id)
 
   reply.send(book);
 };
 
-module.exports = { getBooks, getBook, addBook, updateBook };
+const deleteBook = (req, reply) => {
+  const { id } = req.params;
+
+  bookdata = bookdata.filter((book) => book.id !== id);
+
+  reply.send({message: `book ${id} has been deleted`});
+};
+
+module.exports = { getBooks, getBook, addBook, updateBook, deleteBook };

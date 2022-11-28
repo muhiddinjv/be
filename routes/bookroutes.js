@@ -1,4 +1,4 @@
-const { getBook, getBooks, addBook } = require("../controllers/bookController");
+const { getBook, getBooks, addBook, updateBook, deleteBook } = require("../controllers/bookController");
 
 // options for get all books
 const Book = {
@@ -47,7 +47,23 @@ const updateBookOpts = {
       200: Book,
     },
   },
-  handler: getBook,
+  handler: updateBook,
+};
+
+const deleteBookOpts = {
+  schema: {
+    response: {
+      201: {
+        body:{
+          type:'object',
+          properties: {
+            message: { type:'string' }
+          }
+        }
+      },
+    },
+  },
+  handler: deleteBook,
 };
 
 function bookRoutes(fastify, options, done) {
@@ -62,6 +78,9 @@ function bookRoutes(fastify, options, done) {
 
   // UPDATE single book
   fastify.put("/books/:id", updateBookOpts);
+
+  // DELETE single book
+  fastify.delete("/books/:id", deleteBookOpts);
 
   done();
 }
