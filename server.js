@@ -5,7 +5,7 @@ fastify.register(require("@fastify/swagger"), {
   exposeRoute: true,
   swagger: {
     info: {
-      title: "Okeni swaggeri bu uka!",
+      title: "Check this swagger out dude!",
     },
   },
 });
@@ -21,3 +21,7 @@ const start = async () => {
   }
 };
 start();
+
+// git config --global http.sslVerify false 
+// ------------ git push -----------------
+// git config --global http.sslVerify true

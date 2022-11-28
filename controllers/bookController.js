@@ -14,7 +14,6 @@ const getBook = (req, reply) => {
 };
 
 const addBook = (req, reply) => {
-  //29:46
   const { title, author, published } = req.body;
   const book = {
     id: uuidv4(),
