@@ -1,0 +1,23 @@
+{
+  "name": "fastimongo",
+  "version": "1.0.0",
+  "description": "fastify-mongodb-app",
+  "main": "server.js",
+  "scripts": {
+    "test": "test-command",
+    "dev": "nodemon server"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git-repo"
+  },
+  "keywords": [
+    "keywords"
+  ],
+  "author": "Muhiddin",
+  "license": "ISC",
+  "dependencies": {
+    "fastify": "^4.10.2",
+    "nodemon": "^2.0.20"
+  }
+}

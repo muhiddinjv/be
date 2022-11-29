@@ -5,7 +5,7 @@ fastify.register(require("@fastify/swagger"), {
   exposeRoute: true,
   swagger: {
     info: {
-      title: "Check this swagger out dude!",
+      title: "Imma swagga cuz I swag!",
     },
   },
 });
