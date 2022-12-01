@@ -2,10 +2,10 @@
   "name": "fastimongo",
   "version": "1.0.0",
   "description": "fastify-mongodb-app",
-  "main": "server.js",
+  "main": "app/index.js",
   "scripts": {
     "test": "test-command",
-    "dev": "nodemon server"
+    "start": "nodemon app/index.js"
   },
   "repository": {
     "type": "git",
