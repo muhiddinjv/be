@@ -5,7 +5,8 @@
   "main": "app/index.js",
   "scripts": {
     "test": "test-command",
-    "start": "nodemon app/index.js"
+    "start": "node app/index.js",
+    "server": "nodemon app/index.js"
   },
   "repository": {
     "type": "git",
@@ -17,7 +18,15 @@
   "author": "Muhiddin",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
+    "fastify-mongodb": "^4.2.0",
+    "mongodb": "^4.12.1",
+    "mongoose": "^6.7.5",
     "nodemon": "^2.0.20"
+  },
+  "devDependencies": {
+    "@fastify/mongodb": "^6.2.0",
+    "@fastify/swagger": "^8.2.0"
   }
 }
