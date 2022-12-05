@@ -12,9 +12,11 @@ dotenv.config();
 //   },
 // });
 
-fastify.register(require("./routes/posts.routes"));
+
 
 const PORT = process.env.PORT || 5000;
+
+fastify.register(require("./routes/posts.routes"));
 
 const startServer = async () => {
   try {

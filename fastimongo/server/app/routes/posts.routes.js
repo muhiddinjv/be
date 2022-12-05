@@ -1,32 +1,25 @@
-const allposts = [
-  { id: 1, title: 'Post One', body: 'This is post one' },
-  { id: 2, title: 'Post Two', body: 'This is post two' },
-  { id: 3, title: 'Post Three', body: 'This is post three' },
-];
+const { getPostsSchema, getPostSchema, addPostSchema } = require('../controllers/schemas/posts.js');
+const { getPostsHandler, getPostHandler, addPostHandler } = require('../controllers/handlers/posts.js');
 
 const getPostsOpts = {
-  schema:{
-    response:{
-      200: {
-        type: 'array',
-        items: {
-          type: 'object',
-          properties: {
-            id: {type: 'number'},
-            title: {type: 'string'},
-            body: {type:'string'},
-          }
-        }
-      }
-    }
-  },
-  handler:(request, reply) => {
-    reply.send(allposts);
-  }
+  schema: getPostsSchema,
+  handler: getPostsHandler
+}
+
+const getPostOpts = {
+  schema: getPostSchema,
+  handler: getPostHandler
+}
+
+const addPostOpts = {
+  schema: addPostSchema,
+  handler: addPostHandler
 }
 
 const postRoutes = (fastify, options, done) => {
-    fastify.get('/', getPostsOpts)
+    fastify.get('/api/posts', getPostsOpts)
+    fastify.get('/api/posts/:id', getPostOpts)
+    fastify.post('/api/posts/new', addPostOpts)
     done();
 }
 
