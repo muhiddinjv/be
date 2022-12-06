@@ -42,4 +42,14 @@ const addPostSchema = {
   },
 };
 
-module.exports = { getPostsSchema, getPostSchema, addPostSchema };
+const deletePostSchema = {
+  params: {
+    id: {type: 'number'},
+  },
+  response: {
+    200: post,
+  },
+};
+
+module.exports = { getPostsSchema, getPostSchema, addPostSchema, deletePostSchema };
+// move on to update post
