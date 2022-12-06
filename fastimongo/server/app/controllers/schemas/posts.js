@@ -44,12 +44,20 @@ const addPostSchema = {
 
 const deletePostSchema = {
   params: {
-    id: {type: 'number'},
+    id: typeNumber,
   },
   response: {
     200: post,
   },
 };
 
-module.exports = { getPostsSchema, getPostSchema, addPostSchema, deletePostSchema };
-// move on to update post
+const updatePostSchema = {
+  params: {
+    id: typeNumber,
+  },
+  response: {
+    200: post,
+  },
+};
+
+module.exports = { getPostsSchema, getPostSchema, addPostSchema, deletePostSchema, updatePostSchema };

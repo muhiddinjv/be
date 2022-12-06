@@ -41,4 +41,15 @@ const deletePostHandler = (req, reply) => {
   return reply.send('Post deleted');
 };
 
-module.exports = { getPostsHandler, getPostHandler, addPostHandler, deletePostHandler };
+const updatePostHandler = (req, reply) => {
+  const { id } = req.params;
+  const { title, body } = req.body;
+  
+  const targetIndex = posts.findIndex(f => f.id === id); 
+  
+  posts[targetIndex] = { id, title, body };
+
+  return reply.send('Post updated');
+};
+
+module.exports = { getPostsHandler, getPostHandler, addPostHandler, deletePostHandler, updatePostHandler };
