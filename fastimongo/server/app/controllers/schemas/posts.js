@@ -42,15 +42,6 @@ const addPostSchema = {
   },
 };
 
-const deletePostSchema = {
-  params: {
-    id: typeNumber,
-  },
-  response: {
-    200: post,
-  },
-};
-
 const updatePostSchema = {
   params: {
     id: typeNumber,
@@ -60,4 +51,13 @@ const updatePostSchema = {
   },
 };
 
-module.exports = { getPostsSchema, getPostSchema, addPostSchema, deletePostSchema, updatePostSchema };
+const deletePostSchema = {
+  params: {
+    id: typeNumber,
+  },
+  response: {
+    200: typeString,
+  },
+};
+
+module.exports = { getPostsSchema, getPostSchema, addPostSchema, updatePostSchema, deletePostSchema };

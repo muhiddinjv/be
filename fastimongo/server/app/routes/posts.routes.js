@@ -1,5 +1,5 @@
-const { getPostsSchema, getPostSchema, addPostSchema, deletePostSchema, updatePostSchema } = require('../controllers/schemas/posts.js');
-const { getPostsHandler, getPostHandler, addPostHandler, deletePostHandler, updatePostHandler } = require('../controllers/handlers/posts.js');
+const { getPostsSchema, getPostSchema, addPostSchema,  updatePostSchema, deletePostSchema } = require('../controllers/schemas/posts.js');
+const { getPostsHandler, getPostHandler, addPostHandler, updatePostHandler, deletePostHandler } = require('../controllers/handlers/posts.js');
 
 const getPostsOpts = {
   schema: getPostsSchema,

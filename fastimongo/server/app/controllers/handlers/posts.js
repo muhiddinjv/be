@@ -27,20 +27,6 @@ const addPostHandler = (req, reply) => {
   reply.send('Post added');
 };
 
-const deletePostHandler = (req, reply) => {
-  const { id } = req.params;
-  
-  const foundPost = posts.find(post => post.id === id);
-
-  if(!foundPost){
-    return reply.status(404).send(new Error('Post not found'));
-  }
-  
-  posts = posts.filter(post => post.id !== id) //LOOK HERE
-
-  return reply.status(200).send(posts);
-};
-
 const updatePostHandler = (req, reply) => {
   const { id } = req.params;
   const { title, body } = req.body;
@@ -50,6 +36,20 @@ const updatePostHandler = (req, reply) => {
   posts[targetIndex] = { id, title, body };
 
   return reply.send('Post updated');
+};
+
+const deletePostHandler = (req, reply) => {
+  const { id } = req.params;
+  
+  const foundPost = posts.find(post => post.id === id);
+
+  if(!foundPost){
+    return reply.status(404).send(new Error('Post doesnt exist'));
+  }
+  
+  posts = posts.filter(post => post.id !== id) //LOOK HERE
+
+  return reply.send('Post deleted');
 };
 
 module.exports = { getPostsHandler, getPostHandler, addPostHandler, deletePostHandler, updatePostHandler };
