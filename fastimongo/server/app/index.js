@@ -1,6 +1,9 @@
 const fastify = require("fastify")({logger: true});
 const dotenv = require("dotenv");
+const cors = require("@fastify/cors");
 dotenv.config();
+
+fastify.register(cors, {origin: true})
 
 // fastify.register(require("@fastify/swagger"), {
 //   routePrefix: "/docs",
@@ -11,8 +14,6 @@ dotenv.config();
 //     },
 //   },
 // });
-
-
 
 const PORT = process.env.PORT || 5000;
 

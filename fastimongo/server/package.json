@@ -18,14 +18,13 @@
   "author": "Muhiddin",
   "license": "ISC",
   "dependencies": {
-    "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
-    "fastify-mongodb": "^4.2.0",
-    "mongodb": "^4.12.1",
-    "mongoose": "^6.7.5",
+    "fastify-auth": "^1.2.0",
+    "jsonwebtoken": "^8.5.1",
     "nodemon": "^2.0.20"
   },
   "devDependencies": {
+    "@fastify/cors": "^8.2.0",
     "@fastify/mongodb": "^6.2.0",
     "@fastify/swagger": "^8.2.0"
   }

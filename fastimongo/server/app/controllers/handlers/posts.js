@@ -36,9 +36,9 @@ const deletePostHandler = (req, reply) => {
     return reply.status(404).send(new Error('Post not found'));
   }
   
-  posts = posts.filter(post => post.id !== id)
+  posts = posts.filter(post => post.id !== id) //LOOK HERE
 
-  return reply.send('Post deleted');
+  return reply.status(200).send(posts);
 };
 
 const updatePostHandler = (req, reply) => {
