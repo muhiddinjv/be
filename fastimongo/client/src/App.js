@@ -4,89 +4,83 @@ import {useState, useEffect} from 'react';
 import loaderGif from './loader.gif';
 
 function App() {
-  // fetch data from server
-  const [data, setData] = useState();
+  const [posts, setPosts] = useState();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
-  const [inputValue, setInputValue] = useState();
+  const [title, setTitle] = useState();
+  const [body, setBody] = useState();
 
   // fetch data from server 'https://jsonplaceholder.typicode.com/users'
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const response = await fetch('http://localhost:5000/api/posts');
-        const json = await response.json();
-        setData(json);
-        setLoading(false);
-      } catch (error) {
-        setError(true);
-      }
-    };
-    fetchData();
-  }, [inputValue]);
+    fetchData()
+  }, [title, body]);
 
-  const deletePost = async (id) => {
-    // setLoading(true);
-    console.log('id :>> ', id);
+  const fetchData = async () => {
     try {
-      const response = await fetch(`http://localhost:5000/api/posts/${id}`, {
-        method: 'DELETE'
-      })
-      console.log('response :>> ', response);
+      const response = await fetch('http://localhost:5000/api/posts');
       const json = await response.json();
-      console.log('json :>> ', json);
-
-      if (json.statusCode === 200) {
-        setData(json);
-      }
-      // setLoading(false);
-    } catch (error) {
-      setError(true);
-    }
-  }
-  
-
-  const submitInputValue = async (data) => {
-    alert(inputValue);
-    try {
-      const response = await fetch('http://localhost:5000/api/posts/new', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        }
-      });
-      const json = await response.json();
-      setData(json);
+      setPosts(json);
       setLoading(false);
     } catch (error) {
       setError(true);
     }
+  };
+
+  const handlePost = async (endpoint, method) => {
+    setLoading(true)
+    await fetch(`http://localhost:5000/api/posts/${endpoint}`,{
+      method: `${method}`,
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({title,body})
+    })
+    .then((res) => res.json())
+    .then(posts => setPosts(posts))
+    .catch(error => {
+      console.log('Error fetching data :>> ', error);
+    }).finally(() => {
+      setLoading(false);
+      setError(true);
+    });
+    fetchData();
   }
 
-  
+  const addPost = async (e) => {
+    e.preventDefault();
+    handlePost('new', 'POST')
+  }
 
   return (
     <div className="App">
       <div className='inputs'>
       <h1>Blog Posts 2022</h1>
-      <fieldset>
-        <legend>Blog post input:</legend>
-        <label htmlFor="fname">Title</label>
-        <input type="text" id="fname" name="fname" onChange={(e) => setInputValue(e.target.value)}/>
-        <label htmlFor="lname">Body</label>
-        <input type="text" id="lname" name="lname" />
-        <button type="button" onClick={submitInputValue}>submit</button>
-      </fieldset>
+      <form onSubmit={addPost} autocomplete="on">
+        <fieldset >
+          <legend>Blog post input:</legend>
+          <label htmlFor="title">Title</label>
+          <input type="text" id="title" name="title" onChange={(e) => setTitle(e.target.value)} required/>
+
+          <label htmlFor="body">Body</label>
+          <input type="text" id="body" name="body" onChange={(e) => setBody(e.target.value)} required/>
+          <button type="submit" name='submit'>submit</button>
+        </fieldset>
+      </form>
       </div>
       <div>
-        {!loading ? data?.map(function
-          (item, index) {
+        {!loading ? posts?.map(
+          (item, index) => {
             return (
-              <div className='posts' key={index}>
-                <div><h2 className='posts_title'>{item.id}, {item.title}</h2>
-                <p className='posts_description'>{item.body}</p></div>
-                <div onClick={()=> deletePost(item.id)}>&#x274C;</div>
+              <div className='post' key={index}>
+                <div className='post_content'>
+                  <h2 className='post_title'>{item.title}</h2>
+                  <div className='btns'>
+                    <div className='edit-btn' onClick={()=> handlePost(item.id,'PUT')}>&#128221;</div>
+                    <div className='delete-btn' onClick={()=> handlePost(item.id,'DELETE')}>&#x274C;</div>
+                  </div>
+                </div>
+                <p className='post_description'>{item.body}</p>
               </div>
             )
           }) : <img src={loaderGif} />

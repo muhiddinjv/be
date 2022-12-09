@@ -38,7 +38,10 @@ const addPostSchema = {
     },
   },
   response: {
-    200: typeString,
+    200: {
+      type: 'array',
+      items: post
+    },
   },
 };
 
@@ -47,7 +50,10 @@ const updatePostSchema = {
     id: typeNumber,
   },
   response: {
-    200: post,
+    200: {
+      type: 'array',
+      items: post
+    },
   },
 };
 
@@ -56,7 +62,10 @@ const deletePostSchema = {
     id: typeNumber,
   },
   response: {
-    200: typeString,
+    200: {
+      type: 'array',
+      items: post
+    },
   },
 };
 

@@ -35,7 +35,7 @@ const updatePostHandler = (req, reply) => {
   
   posts[targetIndex] = { id, title, body };
 
-  return reply.send('Post updated');
+  return reply.send(posts);
 };
 
 const deletePostHandler = (req, reply) => {
@@ -48,8 +48,7 @@ const deletePostHandler = (req, reply) => {
   }
   
   posts = posts.filter(post => post.id !== id) //LOOK HERE
-
-  return reply.send('Post deleted');
+  reply.send(posts);
 };
 
 module.exports = { getPostsHandler, getPostHandler, addPostHandler, deletePostHandler, updatePostHandler };

@@ -18,6 +18,7 @@
   "author": "Muhiddin",
   "license": "ISC",
   "dependencies": {
+    "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
     "fastify-auth": "^1.2.0",
     "jsonwebtoken": "^8.5.1",

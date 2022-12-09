@@ -1,22 +1,12 @@
 const fastify = require("fastify")({logger: true});
 const cors = require("@fastify/cors");
+const dotenv = require("dotenv");
 dotenv.config();
 
 fastify.register(cors, {origin: true})
-
-// fastify.register(require("@fastify/swagger"), {
-//   routePrefix: "/docs",
-//   exposeRoute: true,
-//   swagger: {
-//     info: {
-//       title: "Imma swagga cuz I swag!",
-//     },
-//   },
-// });
+fastify.register(require("./routes/posts.routes"));
 
 const PORT = process.env.PORT || 5000;
-
-fastify.register(require("./routes/posts.routes"));
 
 const startServer = async () => {
   try {
