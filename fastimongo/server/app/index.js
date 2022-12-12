@@ -5,6 +5,7 @@ dotenv.config();
 
 fastify.register(cors, {origin: true})
 fastify.register(require("./routes/posts.routes"));
+fastify.register(require("./routes/admins.routes"));
 
 const PORT = process.env.PORT || 5000;
 

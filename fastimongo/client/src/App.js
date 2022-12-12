@@ -85,7 +85,7 @@ function App() {
             )
           }) : <img src={loaderGif} />
         }
-  </div>
+      </div>
     </div>
   )
 }
