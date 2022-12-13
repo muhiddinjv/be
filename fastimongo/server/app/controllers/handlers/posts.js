@@ -24,7 +24,7 @@ const addPostHandler = (req, reply) => {
   const id = posts.length + 1;
   posts.push({ id, title, body });
 
-  reply.send('Post added');
+  reply.send(posts);
 };
 
 const updatePostHandler = (req, reply) => {

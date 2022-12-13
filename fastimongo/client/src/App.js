@@ -56,7 +56,7 @@ function App() {
     <div className="App">
       <div className='inputs'>
       <h1>Blog Posts 2022</h1>
-      <form onSubmit={addPost} autocomplete="on">
+      <form onSubmit={addPost} autoComplete="true">
         <fieldset >
           <legend>Blog post input:</legend>
           <label htmlFor="title">Title</label>
