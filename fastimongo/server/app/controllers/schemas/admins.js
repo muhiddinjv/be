@@ -46,6 +46,25 @@ const registerAdminSchema = {
   },
 };
 
+const loginAdminSchema = {
+  body: {
+    type: 'object',
+    required: ['username', 'password'],
+    properties: {
+      username: typeString,
+      password: typeString,
+    },
+  },
+  response: {
+    200: {
+      type: 'object',
+      properties: {
+        token: typeString,
+      },
+    },
+  },
+};
+
 const updateAdminSchema = {
   params: {
     id: typeNumber,
