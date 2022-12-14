@@ -18,6 +18,7 @@
   "author": "Muhiddin",
   "license": "ISC",
   "dependencies": {
+    "@fastify/static": "^6.6.0",
     "@fastify/swagger": "^8.2.1",
     "dotenv": "^16.0.3",
     "fastify": "^4.10.2",
