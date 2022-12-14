@@ -31,6 +31,15 @@ fastify.get('/', function (req, reply) {
   return reply.sendFile('test.html') // serving path.join(__dirname, 'public', 'myHtml.html') directly
 })
 
+fs.readFile("app/data/users.json", function(err, data) {
+  // Check for errors
+  if (err) throw err;
+  // Converting to JSON
+  const users = JSON.parse(data);
+    
+  console.log(users); // Print users 
+});
+
 const PORT = process.env.PORT || 5000;
 
 const startServer = async () => {
