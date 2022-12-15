@@ -1,9 +1,7 @@
 const fastify = require("fastify")({logger: true});
+const verifyToken = require("./controllers/auth/auth");
 const cors = require("@fastify/cors");
 const dotenv = require("dotenv");
-const fs = require('fs')
-const verifyToken = require("./controllers/auth/auth");
-const path = require('path')
 dotenv.config();
 
 fastify.register(require("@fastify/swagger"), {});
@@ -12,33 +10,16 @@ fastify.register(require("@fastify/swagger-ui"), {
   routePrefix: "/docs",
   swagger: {
     info: {
-      title: "Imma swagga cuz I swag!",
+      title: "I'm a swagga cuz I swag!",
     },
   },
 });
-
-
 
 fastify.decorate('verifyToken', verifyToken);
 fastify.register(cors, {origin: true})
 fastify.register(require("./routes/posts.routes"));
 fastify.register(require("./routes/admins.routes"));
-fastify.register(require('@fastify/static'), {
-  root: path.join(__dirname, '/')
-})
 
-fastify.get('/', function (req, reply) {
-  return reply.sendFile('test.html') // serving path.join(__dirname, 'public', 'myHtml.html') directly
-})
-
-fs.readFile("app/data/users.json", function(err, data) {
-  // Check for errors
-  if (err) throw err;
-  // Converting to JSON
-  const users = JSON.parse(data);
-    
-  console.log(users); // Print users 
-});
 
 const PORT = process.env.PORT || 5000;
 
